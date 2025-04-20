@@ -7,6 +7,6 @@ import jakarta.persistence.*;
 public class Admin extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employee_id")
+    @Column(name = "admin_id")
     private Long id;
 }
