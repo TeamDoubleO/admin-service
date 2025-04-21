@@ -13,7 +13,7 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .info(
                         new Info()
-                                .title("Access Service API") // 서비스 이름
+                                .title("Admin Service API") // 서비스 이름
                                 .description("출입권한 API 명세서")
                                 .version("v1.0.0"));
     }
