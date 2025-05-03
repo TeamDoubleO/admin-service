@@ -39,12 +39,6 @@ public class AdminServiceImpl implements AdminService {
                 .orElseThrow(() -> new CommonException(AdminErrorCode.ADMIN_NOT_FOUND));
     }
 
-    //    private void validateAdmin(String email) {
-    //        if (adminRepository.findMemberByEmail(email).isPresent()) {
-    //            throw new CommonException(AdminErrorCode.ADMIN_ALREADY_EXISTS);
-    //        }
-    //    }
-
     private void validateAdminPassword(String raw, String encoded) {
         if (!passwordEncoder.matches(raw, encoded)) {
             throw new CommonException(AdminErrorCode.INVALID_PASSWORD);
