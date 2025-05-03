@@ -18,7 +18,7 @@ public class Admin extends BaseTimeEntity {
     private Long id;
 
     @Column(name = "admin_username", nullable = false, unique = true)
-    private String username; // 정규화 추가
+    private String username;
 
     @Column(name = "admin_password", nullable = false, length = 100)
     private String password;
