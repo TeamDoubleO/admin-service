@@ -17,5 +17,6 @@ spring:
       - swagger
       - openfeign
       - datasource
+      - redis
       - eureka
       - actuator
