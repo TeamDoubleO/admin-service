@@ -18,10 +18,10 @@ INSERT INTO admin (admin_username, admin_password, admin_affiliation, admin_affi
 
 -- 경기 서북권 (4개)
 INSERT INTO admin (admin_username, admin_password, admin_affiliation, admin_affiliation_id) VALUES
-('admin15', '$2a$10$r8KNcU9cEEuNzBPmCCt8EeNH08JXt8krEWCLU9Yko73jWX7jc3Ehe', '가톨릭 인천성모병원', 'TGNW01CI'),
-('admin16', '$2a$10$r8KNcU9cEEuNzBPmCCt8EeNH08JXt8krEWCLU9Yko73jWX7jc3Ehe', '순천향 부천병원',     'TGNW02SC'),
-('admin17', '$2a$10$r8KNcU9cEEuNzBPmCCt8EeNH08JXt8krEWCLU9Yko73jWX7jc3Ehe', '길병원',              'TGNW03GL'),
-('admin18', '$2a$10$r8KNcU9cEEuNzBPmCCt8EeNH08JXt8krEWCLU9Yko73jWX7jc3Ehe', '인하대병원',         'TGNW04IH');
+('admin15', '$2a$10$r8KNcU9cEEuNzBPmCCt8EeNH08JXt8krEWCLU9Yko73jWX7jc3Ehe', '가톨릭 인천성모병원', 'TGYW01CI'),
+('admin16', '$2a$10$r8KNcU9cEEuNzBPmCCt8EeNH08JXt8krEWCLU9Yko73jWX7jc3Ehe', '순천향 부천병원',     'TGYW02SC'),
+('admin17', '$2a$10$r8KNcU9cEEuNzBPmCCt8EeNH08JXt8krEWCLU9Yko73jWX7jc3Ehe', '길병원',              'TGYW03GL'),
+('admin18', '$2a$10$r8KNcU9cEEuNzBPmCCt8EeNH08JXt8krEWCLU9Yko73jWX7jc3Ehe', '인하대병원',         'TGYW04IH');
 
 -- 경기 남부권 (4개)
 INSERT INTO admin (admin_username, admin_password, admin_affiliation, admin_affiliation_id) VALUES
