@@ -9,7 +9,7 @@ INSERT INTO admin (admin_username, admin_password, admin_affiliation, admin_affi
 ('admin6',  '$2a$10$r8KNcU9cEEuNzBPmCCt8EeNH08JXt8krEWCLU9Yko73jWX7jc3Ehe', '서울대학교병원',    'TSEO06SN'),
 ('admin7',  '$2a$10$r8KNcU9cEEuNzBPmCCt8EeNH08JXt8krEWCLU9Yko73jWX7jc3Ehe', '연세대 신촌세브란스',   'TSEO07YS'),
 ('admin8',  '$2a$10$r8KNcU9cEEuNzBPmCCt8EeNH08JXt8krEWCLU9Yko73jWX7jc3Ehe', '이화여대 목동병원', 'TSEO08EW'),
-('admin9',  '$2a$10$r8KNcU9cEEuNzBPmCCt8EeNH08JXt8krEWCLU9Yko73jWX7jc3Ehe', '아산병원',          'TSEO09AS'),
+('admin9',  '$2a$10$r8KNcU9cEEuNzBPmCCt8EeNH08JXt8krEWCLU9Yko73jWX7jc3Ehe', '서울아산병원',          'TSEO09AS'),
 ('admin10', '$2a$10$r8KNcU9cEEuNzBPmCCt8EeNH08JXt8krEWCLU9Yko73jWX7jc3Ehe', '중앙대학교병원',    'TSEO10CU'),
 ('admin11', '$2a$10$r8KNcU9cEEuNzBPmCCt8EeNH08JXt8krEWCLU9Yko73jWX7jc3Ehe', '고려대 안암병원',   'TSEO11KA'),
 ('admin12', '$2a$10$r8KNcU9cEEuNzBPmCCt8EeNH08JXt8krEWCLU9Yko73jWX7jc3Ehe', '가톨릭 서울성모',    'TSEO12CS'),
