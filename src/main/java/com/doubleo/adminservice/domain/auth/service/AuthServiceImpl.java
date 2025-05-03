@@ -21,7 +21,7 @@ public class AuthServiceImpl implements AuthService {
     private final BCryptPasswordEncoder encoder;
 
     public LoginResponse loginAdmin(LoginRequest request) {
-        Admin admin = validateAdminByEmail(request.email());
+        Admin admin = validateAdminByEmail(request.username());
         if (!encoder.matches(request.password(), admin.getPassword())) {
             throw new CommonException(AdminErrorCode.ADMIN_NOT_FOUND);
         }
