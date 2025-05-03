@@ -5,11 +5,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 public record AdminInfoResponse(
         @Schema(description = "관리자 ID", example = "1") Long adminId,
-        @Schema(description = "관리자 username", example = "example@gmail.com") String username,
-        @Schema(description = "관리자 이름", example = "정선우") String name,
-        @Schema(description = "관리자 연락처", example = "010-1234-5678") String contact) {
+        @Schema(description = "관리자 username", example = "admin1") String username,
+        @Schema(description = "관리자 소속 병원", example = "서울아산병원") String affiliation,
+        @Schema(description = "관리자 소속 병원 구분 ID", example = "000413") String affiliationId) {
     public static AdminInfoResponse of(Admin admin) {
         return new AdminInfoResponse(
-                admin.getId(), admin.getUsername(), admin.getName(), admin.getContact());
+                admin.getId(),
+                admin.getUsername(),
+                admin.getAffiliation(),
+                admin.getAffiliationId());
     }
 }

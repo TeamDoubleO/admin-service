@@ -33,14 +33,14 @@ public class AdminServiceTest {
 
     private final String username = "test@test.com";
     private final String password = "password";
-    private final String name = "name";
-    private final String contact = "contact";
+    private final String affiliation = "서울아산병원";
+    private final String affiliationId = "000413";
 
     private Admin admin;
 
     @BeforeEach
     void setUp() {
-        admin = Admin.createAdmin(username, "encoded", name, contact);
+        admin = Admin.createAdmin(username, "encoded", affiliation, affiliationId);
         ReflectionTestUtils.setField(admin, "id", 1L);
     }
 
@@ -58,8 +58,8 @@ public class AdminServiceTest {
             // then
             assertThat(response.adminId()).isEqualTo(admin.getId());
             assertThat(response.username()).isEqualTo(admin.getUsername());
-            assertThat(response.name()).isEqualTo(admin.getName());
-            assertThat(response.contact()).isEqualTo(admin.getContact());
+            assertThat(response.affiliation()).isEqualTo(admin.getAffiliation());
+            assertThat(response.affiliationId()).isEqualTo(admin.getAffiliationId());
         }
     }
 

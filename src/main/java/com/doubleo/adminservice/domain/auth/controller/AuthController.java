@@ -20,7 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.WebUtils;
 
-@Tag(name = "1-2. Auth API", description = "회원 로그인/로그아웃/Refresh Token 관련 API")
+@Tag(name = "1-2. Auth API", description = "관리자 로그인/로그아웃/Refresh Token 관련 API")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth")
@@ -30,7 +30,7 @@ public class AuthController {
     private final CookieUtil cookieUtil;
     private final JwtTokenService jwtTokenService;
 
-    @Operation(summary = "회원 로그인", description = "회원 로그인을 처리합니다.")
+    @Operation(summary = "관리자 로그인", description = "관리자 로그인을 처리합니다.")
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> adminLogin(@RequestBody LoginRequest request) {
         LoginResponse response = authService.loginAdmin(request);
@@ -40,7 +40,7 @@ public class AuthController {
         return ResponseEntity.ok().headers(headers).body(response);
     }
 
-    @Operation(summary = "회원 로그아웃", description = "회원 로그아웃을 처리합니다.")
+    @Operation(summary = "관리자 로그아웃", description = "관리자 로그아웃을 처리합니다.")
     @PostMapping("/logout")
     public ResponseEntity<Void> adminLogout(
             @RequestHeader(HttpHeaders.AUTHORIZATION) String authorizationHeader,
