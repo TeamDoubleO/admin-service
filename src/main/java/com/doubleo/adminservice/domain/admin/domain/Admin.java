@@ -23,26 +23,27 @@ public class Admin extends BaseTimeEntity {
     @Column(name = "admin_password", nullable = false, length = 100)
     private String password;
 
-    @Column(name = "admin_name", nullable = false)
-    private String name;
+    @Column(name = "admin_affiliation", nullable = false)
+    private String affiliation;
 
-    @Column(name = "admin_contact", nullable = false)
-    private String contact;
+    @Column(name = "admin_affiliation_id", nullable = false)
+    private String affiliationId;
 
     @Builder(access = AccessLevel.PRIVATE)
-    private Admin(String username, String password, String name, String contact) {
+    private Admin(String username, String password, String affiliation, String affiliationId) {
         this.username = username;
         this.password = password;
-        this.name = name;
-        this.contact = contact;
+        this.affiliation = affiliation;
+        this.affiliationId = affiliationId;
     }
 
-    public static Admin createAdmin(String username, String password, String name, String contact) {
+    public static Admin createAdmin(
+            String username, String password, String affiliation, String affiliationId) {
         return Admin.builder()
                 .username(username)
                 .password(password)
-                .name(name)
-                .contact(contact)
+                .affiliation(affiliation)
+                .affiliationId(affiliationId)
                 .build();
     }
 
