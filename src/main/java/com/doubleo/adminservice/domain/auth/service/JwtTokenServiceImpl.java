@@ -10,8 +10,10 @@ import com.doubleo.adminservice.global.util.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class JwtTokenServiceImpl implements JwtTokenService {
@@ -43,7 +45,6 @@ public class JwtTokenServiceImpl implements JwtTokenService {
 
     public RefreshTokenDto retrieveRefreshToken(String refreshTokenValue) {
         RefreshTokenDto refreshTokenDto = parseRefreshToken(refreshTokenValue);
-
         if (refreshTokenDto == null) {
             return null;
         }
@@ -58,14 +59,18 @@ public class JwtTokenServiceImpl implements JwtTokenService {
         return null;
     }
 
-    public AccessTokenDto reissueAccessTokenIfExpired(String accessTokenValue) {
+    public Optional<AccessTokenDto> reissueAccessTokenIfExpired(String accessTokenValue) {
         try {
+            // 파싱에 성공하면 아직 유효 ⇒ Optional.empty()
             jwtUtil.parseAccessToken(accessTokenValue);
-            return null;
+            log.info("Access token is still valid, no reissue needed");
+            return Optional.empty();
         } catch (ExpiredJwtException e) {
+            // 만료된 경우에만 새 토큰 생성
             Long adminId = Long.parseLong(e.getClaims().getSubject());
-
-            return createAccessTokenDto(adminId);
+            AccessTokenDto newToken = createAccessTokenDto(adminId);
+            log.info("Access token expired, issued new one for adminId={}", adminId);
+            return Optional.of(newToken);
         }
     }
 
