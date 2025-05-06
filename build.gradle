@@ -8,6 +8,17 @@ plugins {
 group = 'com.doubleo'
 version = '0.0.1-SNAPSHOT'
 
+repositories {
+    mavenCentral()
+    maven {
+        name = 'GitHubPackages'
+        url  = uri('https://maven.pkg.github.com/TeamDoubleO')
+        credentials {
+            username = System.getenv("GIT_USERNAME") ?: project.findProperty("gpr.user")
+            password = System.getenv("GIT_TOKEN") ?: project.findProperty("gpr.key")
+        }
+    }
+}
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
@@ -62,6 +73,9 @@ dependencies {
 
     // Redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    //Tenant-Context
+    implementation 'com.doubleo:tenant-context:0.0.2'
 
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

@@ -7,10 +7,10 @@ import java.util.Optional;
 public interface JwtTokenService {
 
     // AccessToken DTO 생성
-    AccessTokenDto createAccessTokenDto(Long adminId);
+    AccessTokenDto createAccessTokenDto(Long adminId, String tenantId);
 
     // AccessToken 생성
-    String createAccessToken(Long adminId);
+    String createAccessToken(Long adminId, String tenantId);
 
     // RefreshToken 생성
     String createRefreshToken(Long adminId);
