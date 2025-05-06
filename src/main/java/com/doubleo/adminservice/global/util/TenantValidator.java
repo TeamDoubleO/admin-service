@@ -1,12 +1,14 @@
 package com.doubleo.adminservice.global.util;
 
-import com.doubleo.adminservice.domain.model.Tenant;
+import com.doubleo.adminservice.domain.common.model.Tenant;
 import com.doubleo.adminservice.global.exception.CommonException;
 import com.doubleo.adminservice.global.exception.errorcode.TenantErrorCode;
 import com.doubleo.tenantcontext.TenantContextHolder;
 import java.util.Optional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class TenantValidator<T extends Tenant> {
 
@@ -17,6 +19,7 @@ public class TenantValidator<T extends Tenant> {
 
     public T validateTenant(T entity) {
         String currentTenantId = getTenantId();
+        log.info("validateTenant: currentTenantId={}", currentTenantId);
         if (!entity.getTenantId().equals(currentTenantId)) {
             throw new CommonException(TenantErrorCode.INVALID_TENANT_ID);
         }

@@ -7,6 +7,7 @@ import com.doubleo.adminservice.domain.auth.dto.response.LoginResponse;
 import com.doubleo.adminservice.domain.auth.repository.RefreshTokenRepository;
 import com.doubleo.adminservice.global.exception.CommonException;
 import com.doubleo.adminservice.global.exception.errorcode.AdminErrorCode;
+import com.doubleo.adminservice.global.util.TenantValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ public class AuthServiceImpl implements AuthService {
     private final RefreshTokenRepository refreshTokenRepository;
     private final JwtTokenService jwtTokenService;
     private final BCryptPasswordEncoder encoder;
+    private final TenantValidator<Admin> tenantValidator;
 
     public LoginResponse loginAdmin(LoginRequest request) {
         Admin admin = validateAdminByEmail(request.username());
@@ -41,9 +43,10 @@ public class AuthServiceImpl implements AuthService {
     }
 
     private void validateAdminById(Long adminId) {
-        adminRepository
-                .findById(adminId)
-                .orElseThrow(() -> new CommonException(AdminErrorCode.ADMIN_NOT_FOUND));
+        tenantValidator.validateTenant(
+                adminRepository
+                        .findById(adminId)
+                        .orElseThrow(() -> new CommonException(AdminErrorCode.ADMIN_NOT_FOUND)));
     }
 
     private LoginResponse getLoginResponse(Admin admin) {

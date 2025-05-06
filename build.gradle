@@ -12,7 +12,7 @@ repositories {
     mavenCentral()
     maven {
         name = 'GitHubPackages'
-        url  = uri('https://maven.pkg.github.com/TeamDoubleO')
+        url  = uri('https://maven.pkg.github.com/TeamDoubleO/tenant-context')
         credentials {
             username = System.getenv("GIT_USERNAME") ?: project.findProperty("gpr.user")
             password = System.getenv("GIT_TOKEN") ?: project.findProperty("gpr.key")
