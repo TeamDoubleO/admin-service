@@ -6,6 +6,7 @@ import com.doubleo.adminservice.domain.admin.dto.response.AdminInfoResponse;
 import com.doubleo.adminservice.domain.admin.repository.AdminRepository;
 import com.doubleo.adminservice.global.exception.CommonException;
 import com.doubleo.adminservice.global.exception.errorcode.AdminErrorCode;
+import com.doubleo.adminservice.global.util.TenantValidator;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +19,7 @@ public class AdminServiceImpl implements AdminService {
 
     private final AdminRepository adminRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final TenantValidator<Admin> tenantValidator;
 
     @Override
     public AdminInfoResponse getAdminInfo(Long adminId) {
@@ -34,9 +36,10 @@ public class AdminServiceImpl implements AdminService {
 
     // util
     private Admin findAdmin(Long adminId) {
-        return adminRepository
-                .findById(adminId)
-                .orElseThrow(() -> new CommonException(AdminErrorCode.ADMIN_NOT_FOUND));
+        return tenantValidator.validateTenant(
+                adminRepository
+                        .findById(adminId)
+                        .orElseThrow(() -> new CommonException(AdminErrorCode.ADMIN_NOT_FOUND)));
     }
 
     private void validateAdminPassword(String raw, String encoded) {

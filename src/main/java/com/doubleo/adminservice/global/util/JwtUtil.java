@@ -19,19 +19,19 @@ public class JwtUtil {
 
     private final JwtProperties jwtProperties;
 
-    public AccessTokenDto generateAccessTokenDto(Long adminId) {
+    public AccessTokenDto generateAccessTokenDto(Long adminId, String tenantId) {
         Date issuedAt = new Date();
         Date expiredAt =
                 new Date(issuedAt.getTime() + jwtProperties.accessTokenExpirationMilliTime());
-        String tokenValue = buildAccessToken(adminId, issuedAt, expiredAt);
-        return new AccessTokenDto(adminId, tokenValue);
+        String tokenValue = buildAccessToken(adminId, tenantId, issuedAt, expiredAt);
+        return new AccessTokenDto(adminId, tokenValue, tenantId);
     }
 
-    public String generateAccessToken(Long adminId) {
+    public String generateAccessToken(Long adminId, String tenantId) {
         Date issuedAt = new Date();
         Date expiredAt =
                 new Date(issuedAt.getTime() + jwtProperties.accessTokenExpirationMilliTime());
-        return buildAccessToken(adminId, issuedAt, expiredAt);
+        return buildAccessToken(adminId, tenantId, issuedAt, expiredAt);
     }
 
     //    public RefreshTokenDto generateRefreshTokenDto(Long adminId) {
@@ -60,9 +60,9 @@ public class JwtUtil {
     public AccessTokenDto parseAccessToken(String accessTokenValue) throws ExpiredJwtException {
         try {
             Jws<Claims> claims = getClaims(accessTokenValue, getAccessTokenKey());
-
-            return AccessTokenDto.of(
-                    Long.parseLong(claims.getBody().getSubject()), accessTokenValue);
+            Long adminId = Long.parseLong(claims.getBody().getSubject());
+            String tenantId = claims.getBody().get("tenantId", String.class);
+            return new AccessTokenDto(adminId, accessTokenValue, tenantId);
         } catch (ExpiredJwtException e) {
             throw e;
         } catch (Exception e) {
@@ -104,10 +104,11 @@ public class JwtUtil {
         return Keys.hmacShaKeyFor(jwtProperties.refreshTokenSecret().getBytes());
     }
 
-    private String buildAccessToken(Long adminId, Date issuedAt, Date expiredAt) {
+    private String buildAccessToken(Long adminId, String tenantId, Date issuedAt, Date expiredAt) {
         return Jwts.builder()
                 .setIssuer(jwtProperties.issuer())
                 .setSubject(adminId.toString())
+                .claim("tenantId", tenantId)
                 .setIssuedAt(issuedAt)
                 .setExpiration(expiredAt)
                 .signWith(getAccessTokenKey())

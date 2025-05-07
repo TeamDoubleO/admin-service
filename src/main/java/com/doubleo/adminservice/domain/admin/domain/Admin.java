@@ -1,6 +1,6 @@
 package com.doubleo.adminservice.domain.admin.domain;
 
-import com.doubleo.adminservice.domain.common.model.BaseTimeEntity;
+import com.doubleo.adminservice.domain.common.model.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Admin extends BaseTimeEntity {
+public class Admin extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
