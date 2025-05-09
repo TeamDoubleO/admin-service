@@ -109,6 +109,7 @@ public class JwtUtil {
                 .setIssuer(jwtProperties.issuer())
                 .setSubject(adminId.toString())
                 .claim("tenantId", tenantId)
+                .claim("platform", Platform.ADMIN.name())
                 .setIssuedAt(issuedAt)
                 .setExpiration(expiredAt)
                 .signWith(getAccessTokenKey())
