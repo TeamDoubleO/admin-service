@@ -24,7 +24,7 @@ public class JwtUtil {
         Date expiredAt =
                 new Date(issuedAt.getTime() + jwtProperties.accessTokenExpirationMilliTime());
         String tokenValue = buildAccessToken(adminId, tenantId, issuedAt, expiredAt);
-        return new AccessTokenDto(adminId, tokenValue, tenantId);
+        return new AccessTokenDto(adminId, tenantId, tokenValue);
     }
 
     public String generateAccessToken(Long adminId, String tenantId) {
