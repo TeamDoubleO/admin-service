@@ -17,7 +17,11 @@ public class Admin extends BaseEntity {
     @Column(name = "admin_id", nullable = false)
     private Long id;
 
-    @Column(name = "admin_username", nullable = false, unique = true)
+    @Column(
+            name = "admin_username",
+            columnDefinition = "VARCHAR(255) COLLATE utf8mb4_0900_as_cs",
+            nullable = false,
+            unique = true)
     private String username;
 
     @Column(name = "admin_password", nullable = false, length = 100)
